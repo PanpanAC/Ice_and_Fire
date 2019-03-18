@@ -58,6 +58,8 @@ dependencies {
     compile "com.azanor:thaumcraft-api:6.1-beta23"
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.25-B40_1.12"
     runtime "mezz.jei:jei_1.12.2:4.9.1.181"
+	compile "slimeknights.mantle:Mantle:1.12-+"
+	compile "slimeknights:TConstruct:1.12.2-2.12.0.+"
 }
 
 processResources

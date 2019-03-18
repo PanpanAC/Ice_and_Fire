@@ -5,6 +5,7 @@ import com.github.alexthe666.iceandfire.core.ModRecipes;
 import com.github.alexthe666.iceandfire.core.ModVillagers;
 import com.github.alexthe666.iceandfire.event.EventLiving;
 import com.github.alexthe666.iceandfire.event.StructureGenerator;
+import com.github.alexthe666.iceandfire.integration.TinkersConstruct.TinkersConstructCompatBridge;
 import com.github.alexthe666.iceandfire.integration.ThaumcraftCompatBridge;
 import com.github.alexthe666.iceandfire.loot.CustomizeToDragon;
 import com.github.alexthe666.iceandfire.loot.CustomizeToSeaSerpent;
@@ -44,7 +45,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = IceAndFire.MODID, dependencies = "required-after:llibrary@[" + IceAndFire.LLIBRARY_VERSION + ",)", version = IceAndFire.VERSION, name = IceAndFire.NAME, guiFactory = "com.github.alexthe666.iceandfire.client.gui.IceAndFireGuiFactory")
+@Mod(modid = IceAndFire.MODID, dependencies = "required-after:llibrary@[" + IceAndFire.LLIBRARY_VERSION + ",);after:tconstruct", version = IceAndFire.VERSION, name = IceAndFire.NAME, guiFactory = "com.github.alexthe666.iceandfire.client.gui.IceAndFireGuiFactory")
 public class IceAndFire {
 
     public static final String MODID = "iceandfire";
@@ -81,6 +82,7 @@ public class IceAndFire {
         logger.info("A raven flies from the north to the sea");
         logger.info("A dragon whispers her name in the east");
         ThaumcraftCompatBridge.loadThaumcraftCompat();
+        TinkersConstructCompatBridge.loadTConstructCompat();
         LootFunctionManager.registerFunction(new CustomizeToDragon.Serializer());
         LootFunctionManager.registerFunction(new CustomizeToSeaSerpent.Serializer());
         ModRecipes.preInit();
