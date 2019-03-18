@@ -1,14 +1,9 @@
-package com.github.alexthe666.iceandfire.integration.TinkersConstruct.Traits;
+package com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits;
 
 import com.github.alexthe666.iceandfire.core.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import slimeknights.tconstruct.library.entity.EntityProjectileBase;

@@ -1,9 +1,8 @@
-package com.github.alexthe666.iceandfire.integration.TinkersConstruct;
+package com.github.alexthe666.iceandfire.integration.tinkersconstruct;
 
 import com.github.alexthe666.iceandfire.core.ModItems;
-import com.github.alexthe666.iceandfire.enums.EnumSeaSerpent;
-import com.github.alexthe666.iceandfire.integration.TinkersConstruct.Traits.TraitAmphithere;
-import com.github.alexthe666.iceandfire.integration.TinkersConstruct.Traits.TraitStymphalian;
+import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.TraitAmphithere;
+import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.TraitStymphalian;
 import net.minecraft.item.ItemStack;
 import slimeknights.tconstruct.library.TinkerRegistry;
 import slimeknights.tconstruct.library.materials.*;

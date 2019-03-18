@@ -1,4 +1,4 @@
-package com.github.alexthe666.iceandfire.integration.TinkersConstruct;
+package com.github.alexthe666.iceandfire.integration.tinkersconstruct;
 
 import net.minecraftforge.fml.common.Loader;
 
