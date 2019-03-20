@@ -1,0 +1,17 @@
+{
+  "modifier": "dragons_frost",
+  "text": [
+    {
+      "text": "Infusing your weapon with ice dragon blood makes it slow down enemies by freezing them and do extra damage against ice dragons."
+    }
+  ],
+  "effects": [
+    "Freezes targets, significantly slowing them down",
+    "Deal increased damage against ice dragons",
+    "Not compatible with Dragon's Flame or Fiery",
+    "Single level"
+  ],
+  "demoTool": [
+    "tconstruct:cleaver"
+  ]
+}

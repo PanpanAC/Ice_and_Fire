@@ -1,0 +1,18 @@
+{
+  "modifier": "dragons_flame",
+  "text": [
+    {
+      "text": "Infusing your weapon with fire dragon blood makes it ignite their targets into flames, do extra damage against ice dragons, and have a large knockback."
+    }
+  ],
+  "effects": [
+    "Sets target on fire",
+    "Knocks backs targets",
+    "Deal increased damage against ice dragons",
+    "Not compatible with Dragon's Frost or Fiery",
+    "Single level"
+  ],
+  "demoTool": [
+    "tconstruct:cleaver"
+  ]
+}

@@ -523,12 +523,16 @@ tc.aspect.draco=Dragon
 
 
 # Tinkers Construct
-
 material.dragonbone.name=item.iceandfire.dragonbone.name
 material.amphithere_feather.name=item.iceandfire.amphithere_feather.name
 material.stymphalian_bird_feather.name=item.iceandfire.stymphalian_bird_feather.name
 
+# Traits
 modifier.amphithere.name=Amphithere Gust
 modifier.amphithere.desc=Knocks back the target with a powerful wind gust
 modifier.stymphalian.name=Stymphalian Flight
 modifier.stymphalian.desc=Makes arrows undaunted by gravity and capable of continuous flight
+
+# Modifiers
+modifier.dragons_flame.name=Dragon's Flame
+modifier.dragons_frost.name=Dragon's Frost

@@ -1,0 +1,10 @@
+[
+  {
+    "type": "modifier",
+    "data": "modifiers/dragons_flame.json"
+  },
+  {
+    "type": "modifier",
+    "data": "modifiers/dragons_frost.json"
+  }
+]
