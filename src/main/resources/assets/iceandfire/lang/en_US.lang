@@ -527,6 +527,9 @@ material.dragonbone.name=item.iceandfire.dragonbone.name
 material.amphithere_feather.name=item.iceandfire.amphithere_feather.name
 material.stymphalian_bird_feather.name=item.iceandfire.stymphalian_bird_feather.name
 
+# Fluids
+fluid.sapphire.name=Molten Sapphire
+
 # Traits
 modifier.amphithere.name=Amphithere Gust
 modifier.amphithere.desc=Knocks back the target with a powerful wind gust

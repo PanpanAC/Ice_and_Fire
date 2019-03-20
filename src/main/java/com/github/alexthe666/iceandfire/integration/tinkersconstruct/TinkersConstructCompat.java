@@ -1,33 +1,38 @@
 package com.github.alexthe666.iceandfire.integration.tinkersconstruct;
 
+import com.github.alexthe666.iceandfire.core.ModBlocks;
 import com.github.alexthe666.iceandfire.core.ModItems;
+import com.github.alexthe666.iceandfire.entity.EntitySnowVillager;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.book.TicBook;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.modifiers.ModifierDragonsFlame;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.modifiers.ModifierDragonsFrost;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.TraitAmphithere;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.TraitStymphalian;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import slimeknights.mantle.client.book.repository.FileRepository;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import slimeknights.mantle.util.RecipeMatch;
+import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.book.TinkerBook;
+import slimeknights.tconstruct.library.fluid.FluidMolten;
 import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.modifiers.Modifier;
-import slimeknights.tconstruct.library.modifiers.ModifierTrait;
+import slimeknights.tconstruct.library.smeltery.CastingRecipe;
+import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
-import slimeknights.tconstruct.tools.TinkerModifiers;
+import slimeknights.tconstruct.library.utils.HarvestLevels;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerTraits;
-
-import static slimeknights.tconstruct.library.utils.HarvestLevels.*;
 
 public class TinkersConstructCompat {
 
+    // There's no need to add support for silver as it's natively supported by Tinker's Construct
     // All the materials (currently) supported with Tinker's Construct
     public static Material materialDragonBone;
     public static Material materialAmphithereFeather;
     public static Material materialStymphalianBirdFeather;
+    // Liquids added by this mod
+    public static FluidMolten moltenSapphire;
     // All new traits added for parts
     public static final AbstractTrait traitAmphithere = new TraitAmphithere();
     public static final AbstractTrait traitStymphalian = new TraitStymphalian();
@@ -51,7 +56,7 @@ public class TinkersConstructCompat {
 
         TinkerRegistry.addMaterial(materialDragonBone);
         TinkerRegistry.addMaterialStats(materialDragonBone,
-                new HeadMaterialStats(1000, 10.0f, 7.0f, COBALT),
+                new HeadMaterialStats(1000, 10.0f, 7.0f, HarvestLevels.COBALT),
                 new BowMaterialStats(0.55f, 1.25f, 7),
                 new ArrowShaftMaterialStats(1.5f, 10));
 
@@ -83,11 +88,39 @@ public class TinkersConstructCompat {
         TinkerRegistry.addMaterialStats(materialStymphalianBirdFeather,
                 new FletchingMaterialStats(1.5f, 0.75f));
 
+
+        // Liquids
+        moltenSapphire = new FluidMolten("sapphire", 0x7D96E7);
+        moltenSapphire.setTemperature(820);
+        FluidRegistry.registerFluid(moltenSapphire);
+        FluidRegistry.addBucketForFluid(moltenSapphire);
+
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("gemSapphire", Material.VALUE_Gem), moltenSapphire));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("oreSapphire", (int) (Material.VALUE_Gem * Config.oreToIngotRatio)), moltenSapphire));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("blockSapphire", Material.VALUE_Gem * 9), moltenSapphire));
+
         // Modifiers
         modifierDragonsFlame.addItem(ModItems.fire_dragon_blood, 1, 1);
         modifierDragonsFrost.addItem(ModItems.ice_dragon_blood, 1, 1);
 
         // Register modifiers
         TicBook.registerBookPages();
+    }
+
+    static void init() {
+
+        // Register casting molten sapphire to gem and block forms
+        TinkerRegistry.registerTableCasting(new ItemStack(ModItems.sapphireGem), TinkerSmeltery.castGem, moltenSapphire, Material.VALUE_Gem);
+        TinkerRegistry.registerBasinCasting(new ItemStack(ModBlocks.sapphireBlock), ItemStack.EMPTY, moltenSapphire, Material.VALUE_Gem * 9);
+        // Register snow villager to sapphire melting to match the normal villager to emerald melting behavior
+        TinkerRegistry.registerEntityMelting(EntitySnowVillager.class, new FluidStack(moltenSapphire, 6));
+    }
+
+    static void postInit() {
+
+        // Register cast creation from sapphire gems
+        for (FluidStack fs : TinkerSmeltery.castCreationFluids) {
+            TinkerRegistry.registerTableCasting(new CastingRecipe(TinkerSmeltery.castGem, RecipeMatch.of("gemSapphire"), fs, true, true));
+        }
     }
 }

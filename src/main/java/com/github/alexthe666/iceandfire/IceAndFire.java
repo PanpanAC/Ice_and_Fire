@@ -5,6 +5,7 @@ import com.github.alexthe666.iceandfire.core.ModRecipes;
 import com.github.alexthe666.iceandfire.core.ModVillagers;
 import com.github.alexthe666.iceandfire.event.EventLiving;
 import com.github.alexthe666.iceandfire.event.StructureGenerator;
+import com.github.alexthe666.iceandfire.integration.tinkersconstruct.TinkersConstructCompat;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.TinkersConstructCompatBridge;
 import com.github.alexthe666.iceandfire.integration.ThaumcraftCompatBridge;
 import com.github.alexthe666.iceandfire.loot.CustomizeToDragon;
@@ -82,7 +83,7 @@ public class IceAndFire {
         logger.info("A raven flies from the north to the sea");
         logger.info("A dragon whispers her name in the east");
         ThaumcraftCompatBridge.loadThaumcraftCompat();
-        TinkersConstructCompatBridge.loadTConstructCompat();
+        TinkersConstructCompatBridge.preInitTinkersConstructCompat();
         LootFunctionManager.registerFunction(new CustomizeToDragon.Serializer());
         LootFunctionManager.registerFunction(new CustomizeToSeaSerpent.Serializer());
         ModRecipes.preInit();
@@ -152,6 +153,8 @@ public class IceAndFire {
                 return new TextComponentString(entityLivingBaseIn.getDisplayName().getFormattedText() + " ").appendSibling(new TextComponentTranslation(s1, new Object[]{entityLivingBaseIn.getDisplayName()}));
             }
         }.setDamageBypassesArmor();
+
+        TinkersConstructCompatBridge.initTinkersConstructCompat();
     }
 
     @EventHandler
@@ -166,5 +169,7 @@ public class IceAndFire {
         logger.info("And now it is known");
         logger.info("A claim to the prize, a crown laced in lies");
         logger.info("You win or you die");
+
+        TinkersConstructCompatBridge.postInitTinkersConstructCompat();
     }
 }
