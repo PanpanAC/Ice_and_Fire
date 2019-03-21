@@ -13,6 +13,8 @@
     "Single level"
   ],
   "demoTool": [
-    "tconstruct:cleaver"
+    "tconstruct:broadsword",
+    "tconstruct:cleaver",
+    "tconstruct:arrow"
   ]
 }
