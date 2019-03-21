@@ -21,6 +21,7 @@ import slimeknights.tconstruct.library.smeltery.CastingRecipe;
 import slimeknights.tconstruct.library.smeltery.MeltingRecipe;
 import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
+import slimeknights.tconstruct.shared.TinkerFluids;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
 import slimeknights.tconstruct.tools.TinkerTraits;
 
@@ -98,6 +99,14 @@ public class TinkersConstructCompat {
         TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("gemSapphire", Material.VALUE_Gem), moltenSapphire));
         TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("oreSapphire", (int) (Material.VALUE_Gem * Config.oreToIngotRatio)), moltenSapphire));
         TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("blockSapphire", Material.VALUE_Gem * 9), moltenSapphire));
+
+        // Smelting gold/silver piles into respective material
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModBlocks.goldPile), TinkerFluids.gold, Material.VALUE_Nugget * 2));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModBlocks.silverPile), TinkerFluids.silver, Material.VALUE_Nugget * 2));
+
+        // Smelting gold/iron hippogryph armor
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.iron_hippogryph_armor), TinkerFluids.iron, Material.VALUE_Ingot * 4));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.gold_hippogryph_armor), TinkerFluids.gold, Material.VALUE_Ingot * 4));
 
         // Modifiers
         modifierDragonsFlame.addItem(ModItems.fire_dragon_blood, 1, 1);
