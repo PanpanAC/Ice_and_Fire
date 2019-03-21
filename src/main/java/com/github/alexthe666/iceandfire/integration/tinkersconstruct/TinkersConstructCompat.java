@@ -11,9 +11,12 @@ import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.Trai
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import slimeknights.mantle.util.RecipeMatch;
 import slimeknights.tconstruct.common.config.Config;
 import slimeknights.tconstruct.library.TinkerRegistry;
+import slimeknights.tconstruct.library.events.MaterialEvent;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
 import slimeknights.tconstruct.library.materials.*;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -23,8 +26,10 @@ import slimeknights.tconstruct.library.traits.AbstractTrait;
 import slimeknights.tconstruct.library.utils.HarvestLevels;
 import slimeknights.tconstruct.shared.TinkerFluids;
 import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tools.TinkerMaterials;
 import slimeknights.tconstruct.tools.TinkerTraits;
 
+@Mod.EventBusSubscriber
 public class TinkersConstructCompat {
 
     // There's no need to add support for silver as it's natively supported by Tinker's Construct
@@ -130,6 +135,17 @@ public class TinkersConstructCompat {
         // Register cast creation from sapphire gems
         for (FluidStack fs : TinkerSmeltery.castCreationFluids) {
             TinkerRegistry.registerTableCasting(new CastingRecipe(TinkerSmeltery.castGem, RecipeMatch.of("gemSapphire"), fs, true, true));
+        }
+    }
+
+    // We are adding our own head stats to silver tools to match the speed and mining level of the tools from this mod (allowing them to compete).
+    // We leave the durability (as the result is similar) and damage (as it's higher in Tinker's Construct, but it wouldn't feel right to nerf it)
+    @SubscribeEvent
+    public static void statRegister(MaterialEvent.StatRegisterEvent event) {
+
+        if (event.material == TinkerMaterials.silver && event.stats.getIdentifier() == MaterialTypes.HEAD) {
+            MaterialEvent.StatRegisterEvent<HeadMaterialStats> registerEvent = (MaterialEvent.StatRegisterEvent<HeadMaterialStats>)event;
+            registerEvent.overrideResult(new HeadMaterialStats(registerEvent.stats.durability, 11.0f, registerEvent.stats.attack, HarvestLevels.DIAMOND));
         }
     }
 }
