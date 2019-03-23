@@ -1,0 +1,6 @@
+// Because we place `tinkersbook` in the `lang` directory.
+// After the first underscore everything is turned into uppercase (until `lang`)
+// which is causing issues with the parts of the code that don't do this.
+
+// Material flavor text
+dragonbone.flavour=Just as mighty as the creature it comes from

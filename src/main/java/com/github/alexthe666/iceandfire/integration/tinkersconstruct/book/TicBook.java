@@ -13,7 +13,7 @@ public class TicBook {
 
     @SideOnly(Side.CLIENT)
     public static void registerBookPages() {
-        TinkerBook.INSTANCE.addRepository(new FileRepository("iceandfire:lang/tinkers_book"));
+        TinkerBook.INSTANCE.addRepository(new FileRepository("iceandfire:tinkers_book"));
         TinkerBook.INSTANCE.addTransformer(new CustomBookTransformer());
     }
 }

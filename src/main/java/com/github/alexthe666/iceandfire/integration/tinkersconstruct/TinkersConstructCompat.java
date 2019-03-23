@@ -46,7 +46,7 @@ public class TinkersConstructCompat {
     // All new modifiers
     public static final Modifier modifierDragonsFlame = new ModifierDragonsFlame();
     public static final Modifier modifierDragonsFrost = new ModifierDragonsFrost();
-    public static final Modifier modifierMyrmexPoison = new ModofierMyrmexVenom();
+    public static final Modifier modifierMyrmexVenom = new ModofierMyrmexVenom();
 
     static void preInit() {
 
@@ -116,7 +116,7 @@ public class TinkersConstructCompat {
         // Modifiers
         modifierDragonsFlame.addItem(ModItems.fire_dragon_blood, 1, 1);
         modifierDragonsFrost.addItem(ModItems.ice_dragon_blood, 1, 1);
-        modifierMyrmexPoison.addItem(ModItems.myrmex_stinger, 1, 1);
+        modifierMyrmexVenom.addItem(ModItems.myrmex_stinger, 1, 1);
 
         // Register modifiers
         TicBook.registerBookPages();
