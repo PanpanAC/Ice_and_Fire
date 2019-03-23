@@ -95,6 +95,7 @@ public class TinkersConstructCompat {
                 new FletchingMaterialStats(1.5f, 0.75f));
 
 
+
         // Liquids
         moltenSapphire = new FluidMolten("sapphire", 0x7D96E7);
         moltenSapphire.setTemperature(820);
@@ -105,13 +106,9 @@ public class TinkersConstructCompat {
         TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("oreSapphire", (int) (Material.VALUE_Gem * Config.oreToIngotRatio)), moltenSapphire));
         TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of("blockSapphire", Material.VALUE_Gem * 9), moltenSapphire));
 
-        // Smelting gold/silver piles into respective material
-        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModBlocks.goldPile), TinkerFluids.gold, Material.VALUE_Nugget * 2));
-        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModBlocks.silverPile), TinkerFluids.silver, Material.VALUE_Nugget * 2));
-
         // Smelting gold/iron hippogryph armor
-        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.iron_hippogryph_armor), TinkerFluids.iron, Material.VALUE_Ingot * 4));
-        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.gold_hippogryph_armor), TinkerFluids.gold, Material.VALUE_Ingot * 4));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.iron_hippogryph_armor, Material.VALUE_Ingot * 4), TinkerFluids.iron));
+        TinkerRegistry.registerMelting(new MeltingRecipe(RecipeMatch.of(ModItems.gold_hippogryph_armor, Material.VALUE_Ingot * 4), TinkerFluids.gold));
 
         // Modifiers
         modifierDragonsFlame.addItem(ModItems.fire_dragon_blood, 1, 1);
@@ -143,7 +140,7 @@ public class TinkersConstructCompat {
     @SubscribeEvent
     public static void statRegister(MaterialEvent.StatRegisterEvent event) {
 
-        if (event.material == TinkerMaterials.silver && event.stats.getIdentifier() == MaterialTypes.HEAD) {
+        if (event.material == TinkerMaterials.silver && event.stats.getIdentifier().equals(MaterialTypes.HEAD)) {
             MaterialEvent.StatRegisterEvent<HeadMaterialStats> registerEvent = (MaterialEvent.StatRegisterEvent<HeadMaterialStats>)event;
             registerEvent.overrideResult(new HeadMaterialStats(registerEvent.stats.durability, 11.0f, registerEvent.stats.attack, HarvestLevels.DIAMOND));
         }
