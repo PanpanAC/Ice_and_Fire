@@ -4,6 +4,7 @@ import com.github.alexthe666.iceandfire.core.ModBlocks;
 import com.github.alexthe666.iceandfire.core.ModItems;
 import com.github.alexthe666.iceandfire.entity.EntitySnowVillager;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.book.TicBook;
+import com.github.alexthe666.iceandfire.integration.tinkersconstruct.modifiers.ModofierMyrmexVenom;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.modifiers.ModifierDragonsFlame;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.modifiers.ModifierDragonsFrost;
 import com.github.alexthe666.iceandfire.integration.tinkersconstruct.traits.TraitAmphithere;
@@ -45,10 +46,12 @@ public class TinkersConstructCompat {
     // All new modifiers
     public static final Modifier modifierDragonsFlame = new ModifierDragonsFlame();
     public static final Modifier modifierDragonsFrost = new ModifierDragonsFrost();
+    public static final Modifier modifierMyrmexPoison = new ModofierMyrmexVenom();
 
     static void preInit() {
 
         // Materials
+        // Right now the dragon bone material is mimicking the normal bone as a material, but it's generally stronger.
         materialDragonBone = new Material("dragonbone", 0xC9C2B7, false);
 
         materialDragonBone.setCraftable(true).setCastable(false);
@@ -58,7 +61,7 @@ public class TinkersConstructCompat {
         materialDragonBone.setRepresentativeItem(new ItemStack(ModItems.dragonbone));
 
         materialDragonBone.addTrait(TinkerTraits.splitting, MaterialTypes.SHAFT);
-        materialDragonBone.addTrait(TinkerTraits.fractured);
+        materialDragonBone.addTrait(TinkerTraits.splintering);
 
         TinkerRegistry.addMaterial(materialDragonBone);
         TinkerRegistry.addMaterialStats(materialDragonBone,
@@ -113,6 +116,7 @@ public class TinkersConstructCompat {
         // Modifiers
         modifierDragonsFlame.addItem(ModItems.fire_dragon_blood, 1, 1);
         modifierDragonsFrost.addItem(ModItems.ice_dragon_blood, 1, 1);
+        modifierMyrmexPoison.addItem(ModItems.myrmex_stinger, 1, 1);
 
         // Register modifiers
         TicBook.registerBookPages();

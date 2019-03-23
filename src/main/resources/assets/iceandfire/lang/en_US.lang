@@ -537,5 +537,6 @@ modifier.stymphalian.name=Stymphalian Flight
 modifier.stymphalian.desc=Makes arrows undaunted by gravity and capable of continuous flight
 
 # Modifiers
+modifier.myrmex_venomous.name=Venomous
 modifier.dragons_flame.name=Dragon's Flame
 modifier.dragons_frost.name=Dragon's Frost

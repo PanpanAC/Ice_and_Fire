@@ -1,6 +1,10 @@
 [
   {
     "type": "modifier",
+    "data": "modifiers/myrmex_venomous.json"
+  },
+  {
+    "type": "modifier",
     "data": "modifiers/dragons_flame.json"
   },
   {

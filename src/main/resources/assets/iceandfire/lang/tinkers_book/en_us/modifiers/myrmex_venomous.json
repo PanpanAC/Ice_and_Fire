@@ -1,0 +1,17 @@
+{
+  "modifier": "myrmex_venomous",
+  "text": [
+    {
+      "text": "By applying Myrmex stingers to your weapon you may envenom it, allowing it poison your enemies with each hit."
+    }
+  ],
+  "effects": [
+    "Poisons your enemies for 10 seconds",
+    "Single level"
+  ],
+  "demoTool": [
+    "tconstruct:broadsword",
+    "tconstruct:cleaver",
+    "tconstruct:arrow"
+  ]
+}
